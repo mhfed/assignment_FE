@@ -1,0 +1,310 @@
+/*********************************
+7. Boxes
+*********************************/
+
+.boxes {
+    width: 100%;
+    background: #ffffff;
+    padding-top: 100px;
+    z-index: 1;
+}
+.box {
+    width: 100%;
+}
+.box_image {
+    width: 100%;
+}
+.box_image img {
+    max-width: 100%;
+}
+.box_title {
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+    bottom: -26px;
+    width: 237px;
+    height: 67px;
+    background: #ffffff;
+    text-align: center;
+}
+.box_title:hover {
+    background: #bbe432;
+}
+.box_title a {
+    display: block;
+    line-height: 67px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #1a1a1a;
+    text-transform: uppercase;
+}
+
+/*********************************
+8. Categories
+*********************************/
+
+.categories {
+    width: 100%;
+    background: #ffffff;
+    padding-top: 96px;
+}
+.categories_list_container {
+    display: inline-block;
+}
+.categories_list li {
+    position: relative;
+}
+.categories_list li:not(:last-child) {
+    margin-right: 70px;
+}
+.categories_list li:not(:last-child)::after {
+    position: absolute;
+    top: -9px;
+    right: -37px;
+    content: "/";
+    font-size: 30px;
+    color: #414141;
+    font-weight: 300;
+}
+.categories_list li a {
+    font-family: "Poppins", sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #414141;
+    text-transform: uppercase;
+    -webkit-transition: all 200ms ease;
+    -moz-transition: all 200ms ease;
+    -ms-transition: all 200ms ease;
+    -o-transition: all 200ms ease;
+    transition: all 200ms ease;
+}
+.categories_list li a:hover {
+    color: #bbe432;
+}
+
+/*********************************
+9. Products
+*********************************/
+
+.products {
+    width: 100%;
+    background: #ffffff;
+    margin-top: 95px;
+    padding-bottom: 99px;
+}
+.products_container {
+    width: calc(100% + 27px);
+    left: -14px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.product {
+    width: calc(100% / 4);
+    padding-left: 14px;
+    padding-right: 13px;
+    margin-bottom: 45px;
+}
+.product_image {
+    width: 100%;
+}
+.product_image::after {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: solid 5px #bbe432;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    content: "";
+    -webkit-transition: all 200ms ease;
+    -moz-transition: all 200ms ease;
+    -ms-transition: all 200ms ease;
+    -o-transition: all 200ms ease;
+    transition: all 200ms ease;
+}
+.product:hover .product_image::after {
+    visibility: visible;
+    opacity: 1;
+}
+.product_image img {
+    max-width: 100%;
+}
+.product_tag {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 59px;
+    height: 59px;
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 59px;
+    text-align: center;
+    z-index: 1;
+}
+.product.hot .product_tag {
+    background: #bbe432;
+}
+.product.sale .product_tag {
+    background: #fd006b;
+}
+.product.new .product_tag {
+    background: #414141;
+}
+.product_content {
+    padding-top: 40px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 45px;
+    background: #ffffff;
+}
+.product_title a {
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #414141;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+.product_price {
+    font-size: 24px;
+    font-weight: 700;
+    color: #414141;
+    margin-top: 13px;
+}
+.product.sale .product_price {
+    color: #fd006b;
+}
+.product_price span {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 700;
+    color: #949494;
+    margin-left: 12px;
+}
+.product_button {
+    width: 138px;
+    height: 45px;
+    background: #edf4f6;
+    text-align: center;
+    margin-top: 22px;
+}
+.product_button:hover {
+    background: #bbe432;
+}
+.product_button a {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    line-height: 45px;
+}
+
+/*********************************
+10. Newsletter
+*********************************/
+
+.newsletter {
+    width: 100%;
+    padding-top: 95px;
+    padding-bottom: 81px;
+}
+.newsletter_title {
+    font-family: "Poppins", sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+.newsletter_subtitle {
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #ffffff;
+    margin-top: 14px;
+}
+.newsletter_form_container {
+    margin-top: 94px;
+}
+.newsletter_form {
+    width: 100%;
+}
+.newsletter_input {
+    width: 100%;
+    height: 45px;
+    background: transparent;
+    border: none;
+    outline: none;
+    border-bottom: solid 2px #ffffff;
+    color: #ffffff;
+    -webkit-transition: all 200ms ease;
+    -moz-transition: all 200ms ease;
+    -ms-transition: all 200ms ease;
+    -o-transition: all 200ms ease;
+    transition: all 200ms ease;
+}
+.newsletter_input:hover,
+.newsletter_input:focus {
+    border-bottom: solid 2px #bbe432;
+}
+.newsletter_button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 138px;
+    height: 45px;
+    background: #bbe432;
+    color: #1a1a1a;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    -webkit-transition: all 200ms ease;
+    -moz-transition: all 200ms ease;
+    -ms-transition: all 200ms ease;
+    -o-transition: all 200ms ease;
+    transition: all 200ms ease;
+}
+.newsletter_input::-webkit-input-placeholder {
+    font-size: 12px !important;
+    font-weight: 400 !important;
+    font-style: italic;
+    color: #ffffff !important;
+}
+.newsletter_input:-moz-placeholder {
+    font-size: 12px !important;
+    font-weight: 400 !important;
+    font-style: italic;
+    color: #ffffff !important;
+}
+.newsletter_input::-moz-placeholder {
+    font-size: 12px !important;
+    font-weight: 400 !important;
+    font-style: italic;
+    color: #ffffff !important;
+}
+.newsletter_input:-ms-input-placeholder {
+    font-size: 12px !important;
+    font-weight: 400 !important;
+    font-style: italic;
+    color: #ffffff !important;
+}
+.newsletter_input::input-placeholder {
+    font-size: 12px !important;
+    font-weight: 400 !important;
+    font-style: italic;
+    color: #ffffff !important;
+}
