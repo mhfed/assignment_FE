@@ -1,0 +1,42 @@
+/*********************************
+8. Categories
+*********************************/
+
+.categories {
+    width: 100%;
+    background: #ffffff;
+    padding-top: 96px;
+}
+.categories_list_container {
+    display: inline-block;
+}
+.categories_list li {
+    position: relative;
+}
+.categories_list li:not(:last-child) {
+    margin-right: 70px;
+}
+.categories_list li:not(:last-child)::after {
+    position: absolute;
+    top: -9px;
+    right: -37px;
+    content: "/";
+    font-size: 30px;
+    color: #414141;
+    font-weight: 300;
+}
+.categories_list li a {
+    font-family: "Poppins", sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #414141;
+    text-transform: uppercase;
+    -webkit-transition: all 200ms ease;
+    -moz-transition: all 200ms ease;
+    -ms-transition: all 200ms ease;
+    -o-transition: all 200ms ease;
+    transition: all 200ms ease;
+}
+.categories_list li a:hover {
+    color: #bbe432;
+}

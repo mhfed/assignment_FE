@@ -4,13 +4,10 @@ export const setLocalStorage = (user: User, next: () => void) => {
     next();
 };
 export const getLocalStorage = () => {
-    if (localStorage.getItem("user")) {
-        return JSON.parse(localStorage.getItem("user") || "");
-    }
-    return false;
+    if (!localStorage.getItem("user")) return;
+    return JSON.parse(localStorage.getItem("user") as string);
 };
 export const removeLocalStorage = () => {
-    if (localStorage.getItem("user")) {
-        return localStorage.removeItem("user");
-    }
+    if (!localStorage.getItem("user")) return;
+    return localStorage.removeItem("user");
 };

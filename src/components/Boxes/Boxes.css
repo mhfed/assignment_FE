@@ -1,0 +1,44 @@
+/*********************************
+7. Boxes
+*********************************/
+
+.boxes {
+    width: 100%;
+    background: #ffffff;
+    padding-top: 100px;
+    z-index: 1;
+}
+.box {
+    width: 100%;
+}
+.box_image {
+    width: 100%;
+}
+.box_image img {
+    max-width: 100%;
+}
+.box_title {
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+    bottom: -26px;
+    width: 237px;
+    height: 67px;
+    background: #ffffff;
+    text-align: center;
+}
+.box_title:hover {
+    background: #bbe432;
+}
+.box_title a {
+    display: block;
+    line-height: 67px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #1a1a1a;
+    text-transform: uppercase;
+}

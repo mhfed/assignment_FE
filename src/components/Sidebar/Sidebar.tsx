@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
 import { getLocalStorage, removeLocalStorage } from "../../utils/localStorage";
 import "./sidebar.css";
@@ -12,6 +13,11 @@ const Sidebar = (props: Props) => {
         removeLocalStorage();
         setIsLogin(!isLogin);
     };
+
+    const { cartTotalQuantity, cartTotalAmount } = useSelector(
+        (state: any) => state.cart
+    );
+
     return (
         <div className="sidebar">
             {!userInfo ? (
@@ -108,11 +114,11 @@ const Sidebar = (props: Props) => {
                 <div className="cart_icon">
                     <Link to="/cart">
                         <img src="images/bag.png" alt="" />
-                        <div className="cart_num">2</div>
+                        <div className="cart_num">{cartTotalQuantity}</div>
                     </Link>
                 </div>
                 <div className="cart_text">Cart</div>
-                <div className="cart_price">$39.99 (1)</div>
+                <div className="cart_price">$ {cartTotalAmount}</div>
             </div>
         </div>
     );

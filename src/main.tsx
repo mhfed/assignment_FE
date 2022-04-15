@@ -4,10 +4,14 @@ import App from "./App";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/fontawesome-4.7/css/font-awesome.min.css";
 import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { store } from "./app/store";
 
 ReactDOM.render(
     <BrowserRouter>
-        <App />
+        <Provider store={store}>
+            <App />
+        </Provider>
     </BrowserRouter>,
     document.getElementById("root")
 );
