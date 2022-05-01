@@ -1,78 +1,77 @@
-import React from "react";
+import React, { useRef, useState } from "react";
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+
+// import required modules
+import { Parallax, Pagination, Navigation } from "swiper";
+
 import "./Banner.css";
 type Props = {};
 
 const Banner = (props: Props) => {
     return (
-        <div className="home">
-            <div className="home_slider_container">
-                <div className="owl-carousel owl-theme home_slider">
-                    <div className="owl-item">
-                        <div className="background_image"></div>
-                        <div className="home_content_container">
-                            <div className="home_content">
-                                <div className="home_discount d-flex flex-row align-items-end justify-content-start">
-                                    <div className="home_discount_num">20</div>
-                                    <div className="home_discount_text">
-                                        Discount on the
-                                    </div>
-                                </div>
-                                <div className="home_title">New Collection</div>
-                                <div className="button button_1 home_button trans_200">
-                                    <a href="categories.html">Shop NOW!</a>
-                                </div>
-                            </div>
-                        </div>
+        <>
+            <Swiper
+                style={{
+                    "--swiper-navigation-color": "#000",
+                }}
+                speed={600}
+                parallax={true}
+                pagination={{
+                    clickable: true,
+                }}
+                navigation={true}
+                modules={[Parallax, Pagination, Navigation]}
+                className="mySwiper"
+            >
+                <div
+                    slot="container-start"
+                    className="parallax-bg"
+                    style={{
+                        backgroundImage: "url(images/slider.jpg)",
+                    }}
+                    data-swiper-parallax="-23%"
+                ></div>
+                <SwiperSlide>
+                    <div className="title" data-swiper-parallax="-300">
+                        Eid Collection
                     </div>
-
-                    <div className="owl-item">
-                        <div className="background_image"></div>
-                        <div className="home_content_container">
-                            <div className="home_content">
-                                <div className="home_discount d-flex flex-row align-items-end justify-content-start">
-                                    <div className="home_discount_num">20</div>
-                                    <div className="home_discount_text">
-                                        Discount on the
-                                    </div>
-                                </div>
-                                <div className="home_title">New Collection</div>
-                                <div className="button button_1 home_button trans_200">
-                                    <a href="categories.html">Shop NOW!</a>
-                                </div>
-                            </div>
-                        </div>
+                    <div className="subtitle" data-swiper-parallax="-200">
+                        Let customers speak for us
                     </div>
-
-                    <div className="owl-item">
-                        <div className="background_image"></div>
-                        <div className="home_content_container">
-                            <div className="home_content">
-                                <div className="home_discount d-flex flex-row align-items-end justify-content-start">
-                                    <div className="home_discount_num">20</div>
-                                    <div className="home_discount_text">
-                                        Discount on the
-                                    </div>
-                                </div>
-                                <div className="home_title">New Collection</div>
-                                <div className="button button_1 home_button trans_200">
-                                    <a href="categories.html">Shop NOW!</a>
-                                </div>
-                            </div>
-                        </div>
+                    <div className="text" data-swiper-parallax="-100">
+                        <p>
+                            The handbag has now become a very important part of
+                            the wardrobes of modern women. Where they are
+                            labeled as fashion staples of the modernized world,
+                            they also represent several benefits for the users.
+                        </p>
                     </div>
-                </div>
-                <div className="home_slider_nav home_slider_prev trans_200">
-                    <div className=" d-flex flex-column align-items-center justify-content-center">
-                        <img src="images/prev.png" alt="" />
+                </SwiperSlide>
+                <SwiperSlide>
+                    <div className="title" data-swiper-parallax="-300">
+                        Handbags
                     </div>
-                </div>
-                <div className="home_slider_nav home_slider_next trans_200">
-                    <div className=" d-flex flex-column align-items-center justify-content-center">
-                        <img src="images/next.png" alt="" />
+                    <div className="subtitle" data-swiper-parallax="-200">
+                        How to select the accurate size and style of handbags?
                     </div>
-                </div>
-            </div>
-        </div>
+                    <div className="text" data-swiper-parallax="-100">
+                        <p>
+                            Whether you want a shoulder bag, tote, crossbody
+                            bag, satchels, clutch, a bucket, hobo, or a
+                            backpack, you will get a huge and unique range of
+                            handbags at astore to create magic in your
+                            wardrobes.
+                        </p>
+                    </div>
+                </SwiperSlide>
+            </Swiper>
+        </>
     );
 };
 

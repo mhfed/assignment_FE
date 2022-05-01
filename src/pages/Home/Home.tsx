@@ -9,7 +9,7 @@ type Props = {};
 const Home = (props: Props) => {
     return (
         <>
-            {/* <Banner /> */}
+            <Banner />
             <Boxes />
 
             <Category />

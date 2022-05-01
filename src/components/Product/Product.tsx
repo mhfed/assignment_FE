@@ -11,7 +11,6 @@ type Props = {};
 const Product = (props: Props) => {
     const dispatch = useDispatch();
     const { slug } = useParams();
-    console.log(slug);
 
     let products = useSelector((state: any) => state.product.value);
     // const [products, setProducts] = useState(pros);
