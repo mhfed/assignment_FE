@@ -66,7 +66,7 @@ const Cart = (props: Props) => {
                                                     >
                                                         <div className="product d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
                                                             <div>
-                                                                <div className="product_image">
+                                                                <div className="product_image_cart">
                                                                     <img
                                                                         src={
                                                                             item.img

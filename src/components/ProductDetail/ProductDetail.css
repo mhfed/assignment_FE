@@ -40,14 +40,14 @@
     line-height: 38px;
     white-space: nowrap;
 }
-.product_content_container {
+.product_detail_container {
     padding-top: 87px;
 }
-.product_content {
+.product_detail_content {
     width: 50%;
     padding-right: 18px;
 }
-.product_content_inner img {
+.product_content_detail_inner img {
     max-width: 100%;
 }
 .product_sidebar {

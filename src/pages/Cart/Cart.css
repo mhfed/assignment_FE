@@ -473,11 +473,11 @@
     height: 100%;
     padding-bottom: 0;
 }
-.product_image {
+.product_image_cart {
     height: 100%;
     width: 119px;
 }
-.product_image img {
+.product_image_cart img {
     max-width: 100%;
 }
 .product_name {

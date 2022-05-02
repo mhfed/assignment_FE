@@ -23,9 +23,9 @@ const ProductDetail = (props: Props) => {
             <div className="container">
                 <div className="row">
                     <div className="col">
-                        <div className="product_content_container d-flex flex-lg-row flex-column align-items-start justify-content-start">
-                            <div className="product_content order-lg-1 order-2">
-                                <div className="product_content_inner">
+                        <div className="product_detail_container d-flex flex-lg-row flex-column align-items-start justify-content-start">
+                            <div className="product_detail_content order-lg-1 order-2">
+                                <div className="product_content_detail_inner">
                                     <img src={product.img} alt={product.name} />
                                 </div>
                             </div>
