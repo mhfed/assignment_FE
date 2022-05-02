@@ -20,7 +20,12 @@ const Signup = () => {
     const navigate = useNavigate();
     const onSubmit: SubmitHandler<TypeInputs> = (data) => {
         signup(data).then(() => {
-            navigate("/signin");
+            navigate("/signin", {
+                state: {
+                    email: data.email,
+                    password: data.password,
+                },
+            });
         });
     };
 

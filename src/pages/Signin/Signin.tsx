@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Signin.css";
 
 import Sidebar from "../../components/Sidebar/Sidebar";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { signin } from "../../api/auth";
 import { setLocalStorage } from "../../utils/localStorage";
 
@@ -18,8 +18,14 @@ const Signin = () => {
         register,
         handleSubmit,
         formState: { errors },
+        reset,
     } = useForm<TypeInputs>();
     const navigate = useNavigate();
+
+    const { state }: any = useLocation();
+    useEffect(() => {
+        reset(state);
+    }, []);
 
     const onSubmit: SubmitHandler<TypeInputs> = async (data) => {
         const { data: user } = await signin(data);
