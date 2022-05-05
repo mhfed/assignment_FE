@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getProducts, removeProduct } from "../../../features/productSlice";
 import { unwrapResult } from "@reduxjs/toolkit";
 import { getCategories } from "../../../features/categorySlice";
+import { toast } from "react-toastify";
 type Props = {};
 
 const ProductList = (props: Props) => {
@@ -24,6 +25,7 @@ const ProductList = (props: Props) => {
             const actionResult: any = await dispatch(removeProduct(id));
             const currentProduct = unwrapResult(actionResult);
             if (currentProduct) {
+                toast.error("Already removed product");
                 navigate("/admin/product");
             }
         }
