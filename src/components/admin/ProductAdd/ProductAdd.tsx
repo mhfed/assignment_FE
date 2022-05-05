@@ -35,7 +35,7 @@ const ProductAdd = () => {
         formState: { errors },
     } = useForm<TypeInputs>();
 
-    const onSubmit: SubmitHandler<TypeInputs> = async (data) => {
+    const onSubmit: SubmitHandler<TypeInputs> = async (data: any) => {
         try {
             if (!data.img) return;
             const storageRef = ref(storage, `files/${data.img[0].name}`);

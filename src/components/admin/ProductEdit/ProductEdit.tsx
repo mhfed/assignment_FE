@@ -6,8 +6,14 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getProduct, updateProduct } from "../../../features/productSlice";
 import { unwrapResult } from "@reduxjs/toolkit";
+import { getCategories } from "../../../features/categorySlice";
+
+import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
+import { storage } from "../../../firebase";
+import { toast } from "react-toastify";
 
 type TypeInputs = {
+    category: string;
     name: string;
     price: number;
     img: string;
@@ -26,6 +32,7 @@ const ProductEdit = () => {
     } = useForm<TypeInputs>();
 
     const product = useSelector((state: any) => state.product.aProduct);
+    const categories = useSelector((state: any) => state.category.value);
 
     useEffect(() => {
         const getAProduct = async () => {
@@ -33,17 +40,48 @@ const ProductEdit = () => {
             const product = unwrapResult(actionResult);
             reset(product);
             //State thay doi sao component ko rerender lai ????
+            dispatch(getCategories());
         };
         getAProduct();
     }, []);
-    const onSubmit: SubmitHandler<TypeInputs> = async (data) => {
+    const onSubmit: SubmitHandler<TypeInputs> = async (data: any) => {
         try {
-            const actionResult: any = await dispatch(
-                updateProduct({ data, id })
-            );
-            const currentProduct = unwrapResult(actionResult);
-            if (currentProduct) {
-                navigate("/admin/product");
+            if (data.img) {
+                const storageRef = ref(storage, `files/${data.img[0].name}`);
+                const uploadTask = uploadBytesResumable(
+                    storageRef,
+                    data.img[0]
+                );
+                uploadTask.on(
+                    "state_changed",
+                    (snapshot) => {
+                        const prog = Math.round(
+                            (snapshot.bytesTransferred / snapshot.totalBytes) *
+                                100
+                        );
+                        //XU LI PROGRESSBAR O DAY
+                    },
+                    (error) => console.log(error),
+                    () => {
+                        getDownloadURL(uploadTask.snapshot.ref).then(
+                            (downloadURL) => {
+                                data.img = downloadURL;
+                                // Call API here
+                                dispatch(updateProduct({ data, id })).then(
+                                    () => {
+                                        toast.success(
+                                            "Updated product successfully"
+                                        );
+                                        navigate("/admin/product");
+                                    }
+                                );
+                                console.log("File available at", downloadURL);
+                            }
+                        );
+                    }
+                );
+            } else {
+                dispatch(updateProduct({ data, id }));
             }
         } catch (error) {
             console.log(error);
@@ -56,10 +94,14 @@ const ProductEdit = () => {
             <form className="formAdd" onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-group">
                     <label htmlFor="category">Category </label>
-                    <select className="form-select">
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                    <select className="form-select" {...register("category")}>
+                        {categories.map((cate: any) => {
+                            return (
+                                <option key={cate._id} value={cate._id}>
+                                    {cate.name}
+                                </option>
+                            );
+                        })}
                     </select>
                 </div>
                 <div className="form-group">
@@ -84,11 +126,12 @@ const ProductEdit = () => {
                 <div className="form-group">
                     <label htmlFor="img">IMG</label>
                     <input
-                        type="text"
+                        type="file"
                         className="form-control"
                         id="img"
                         {...register("img")}
                     />
+                    <img src={product.img} alt="" width="100" />
                 </div>
                 <div className="form-group">
                     <label htmlFor="desc">Description</label>
@@ -97,7 +140,7 @@ const ProductEdit = () => {
                         id="desc"
                         {...register("desc")}
                         className="form-control"
-                        rows="5"
+                        rows={5}
                     ></textarea>
                 </div>
                 <button type="submit" className="btn btn-primary">

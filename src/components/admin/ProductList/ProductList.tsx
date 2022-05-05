@@ -4,15 +4,18 @@ import "./ProductList.css";
 import { useSelector, useDispatch } from "react-redux";
 import { getProducts, removeProduct } from "../../../features/productSlice";
 import { unwrapResult } from "@reduxjs/toolkit";
+import { getCategories } from "../../../features/categorySlice";
 type Props = {};
 
 const ProductList = (props: Props) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const products = useSelector((state: any) => state.product.value);
+    const categories = useSelector((state: any) => state.category.value);
 
     useEffect(() => {
         dispatch(getProducts());
+        dispatch(getCategories());
     }, []);
 
     const handleRemove = async (id: number) => {
@@ -33,6 +36,7 @@ const ProductList = (props: Props) => {
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Name</th>
+                        <th scope="col">Category</th>
                         <th scope="col">Price</th>
                         <th scope="col">Img</th>
                         <th scope="col">
@@ -48,6 +52,14 @@ const ProductList = (props: Props) => {
                             <tr key={product._id}>
                                 <th scope="row">{index + 1}</th>
                                 <td>{product.name}</td>
+                                <td>
+                                    {
+                                        categories.find(
+                                            (item: any) =>
+                                                item._id === product.category
+                                        )?.name
+                                    }
+                                </td>
                                 <td>{product.price}</td>
                                 <td>
                                     <img
