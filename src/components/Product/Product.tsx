@@ -11,6 +11,9 @@ type Props = {};
 const Product = (props: Props) => {
     const dispatch = useDispatch();
     const { slug } = useParams();
+    useEffect(() => {
+        console.log("Get API");
+    }, [slug]);
 
     let products = useSelector((state: any) => state.product.value);
     // const [products, setProducts] = useState(pros);

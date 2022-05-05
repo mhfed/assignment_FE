@@ -7,6 +7,10 @@ import { addProduct } from "../../../features/productSlice";
 import { unwrapResult } from "@reduxjs/toolkit";
 import { getCategories } from "../../../features/categorySlice";
 
+import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
+import { storage } from "../../../firebase";
+import { toast } from "react-toastify";
+
 type TypeInputs = {
     category: string;
     name: string;
@@ -33,11 +37,32 @@ const ProductAdd = () => {
 
     const onSubmit: SubmitHandler<TypeInputs> = async (data) => {
         try {
-            const actionResult: any = await dispatch(addProduct(data));
-            const currentProduct = unwrapResult(actionResult);
-            if (currentProduct) {
-                navigate("/admin/product");
-            }
+            if (!data.img) return;
+            const storageRef = ref(storage, `files/${data.img[0].name}`);
+            const uploadTask = uploadBytesResumable(storageRef, data.img[0]);
+            uploadTask.on(
+                "state_changed",
+                (snapshot) => {
+                    const prog = Math.round(
+                        (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                    );
+                    //XU LI PROGRESSBAR O DAY
+                },
+                (error) => console.log(error),
+                () => {
+                    getDownloadURL(uploadTask.snapshot.ref).then(
+                        (downloadURL) => {
+                            data.img = downloadURL;
+                            // Call API here
+                            dispatch(addProduct(data)).then(() => {
+                                toast.success("Add product successfully");
+                                navigate("/admin/product");
+                            });
+                            console.log("File available at", downloadURL);
+                        }
+                    );
+                }
+            );
         } catch (error) {
             console.log(error);
         }
@@ -77,11 +102,10 @@ const ProductAdd = () => {
                         {...register("price")}
                     />
                 </div>
-
                 <div className="form-group">
-                    <label htmlFor="img">IMG</label>
+                    <label htmlFor="img">Upload Img</label>
                     <input
-                        type="text"
+                        type="file"
                         className="form-control"
                         id="img"
                         {...register("img")}
@@ -94,7 +118,7 @@ const ProductAdd = () => {
                         id="desc"
                         {...register("desc")}
                         className="form-control"
-                        rows="5"
+                        rows={5}
                     ></textarea>
                 </div>
 
